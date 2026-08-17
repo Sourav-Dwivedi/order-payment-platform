@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  postgres-orders:
+    image: postgres:15
+    container_name: postgres-orders
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: orders
+    ports:
+      - "5432:5432"
+
+  postgres-payments:
+    image: postgres:15
+    container_name: postgres-payments
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: payments
+    ports:
+      - "5433:5432"
+
+  activemq:
+    image: rmohr/activemq:latest
+    container_name: activemq
+    ports:
+      - "61616:61616"   # broker
+      - "8161:8161"     # web console
